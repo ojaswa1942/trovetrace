@@ -1,0 +1,3 @@
+# Trove Trace
+Trove Trace is an online quest-oriented puzzling contest to be organized under Infotsav'19 where you are expected to cross the hurdles of some brain cracking problems of subsequent toughness to emerge as the winner.
+If solving clues to unravel a mystery give you a rush, then challenge yourself in a battle of wit and common sense and follow the instructions and clues from one link to the next to solve a series of mind boggling questions."
