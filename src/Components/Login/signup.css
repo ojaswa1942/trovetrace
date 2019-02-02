@@ -1,9 +1,11 @@
 .register-container {
   margin: 0;
-  background: #111a26; /*#25A3FF;*/
+  background: ; /*#25A3FF;*/
   font-family: 'Roboto', sans-serif;
 }
-
+a{
+  text-decoration: none;
+}
 .doNotDisplay {
   display: none;
 }
@@ -21,13 +23,13 @@
 #progress {
   position: absolute;
   background: #0f101a; /*#0069ec;*/
-  height: 100vh;
   width: 0;
   transition: width 0.2s ease-in-out;
+  display: none;
 }
 
 .center {
-  min-height: 100vh;
+  /*min-height: 100vh;*/
   display: flex;
   justify-content: center;
   align-items: center;

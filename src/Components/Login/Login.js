@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import {Link, Redirect} from 'react-router-dom';
-import Footer from '../_Footer/Footer';
-import '../../assets/css/solid.min.css'
-import '../../assets/css/fontawesome.min.css'
-import '../../assets/css/signup.css'
-import headers from "../../assets/logo/headers.png"
+import './signup.css'
 import {registerFunctions} from './LoginFunctions'
 import {Loader} from '../_Loader/Loader'
 
@@ -35,7 +31,7 @@ class Login extends Component {
 		    this.setState({ loading: false, redirect: true });
 		    this.props.updateLoginState(true);
 		})
-		.catch(() => {
+		.catch((errr) => {
 			this.setState({ loading: false });
 			registerFunctions(this);
 		});
@@ -88,7 +84,7 @@ class Login extends Component {
   render() {
   	const { loading } = this.state;
   	if(this.state.redirect){
-  		return <Redirect to='/profile' />
+  		return <Redirect to='/play' />
   	}
 
   	if(this.state.username && this.state.password && !this.state.gotUserData){
@@ -96,7 +92,7 @@ class Login extends Component {
   	}
 
   	if(this.state.gotUserData && this.state.verification){
-  		return <Redirect to='/profile' />
+  		return <Redirect to='/play' />
   	}
   	if(this.state.errorRes){
   		setTimeout(()=>{
@@ -107,9 +103,6 @@ class Login extends Component {
     return (
   		
 	   	<div className='register-container'>
-	   	  <div>
-			<Link to='/'><img src={headers} className="headim" alt="infotsav logo" /></Link>
-		  </div>
    		  <div id="progress"></div>
 		  <div className="center">
 		  	<div id="headdin">
@@ -135,19 +128,14 @@ class Login extends Component {
 					        <input id="inputField" required autoFocus />
 					        <label id="inputLabel"></label>
 					        <select id="selectBox" className='doNotDisplay'>
-					          <option value="male">Male</option>
-					          <option value="female">Female</option>
-					          <option value="other">Other</option>
 					        </select>
 					        <div id="inputProgress"></div>
 					      </div>
 					    </div>
 			}
-		    <Link to="/resetPass"><div id="sendto">Forgot your password?</div></Link>
-		    <div id="sendto">Don't have an account? <Link to="/register">REGISTER</Link></div>
-		    <div id="holdit"></div>
+		    <a target="_blank" rel="noopener noreferrer" href="https://www.infotsav.in/resetPass"><div id="sendto">Forgot your password?</div></a>
+		    <div id="sendto">Don't have an account? <a target="_blank" rel="noopener noreferrer" href="https://www.infotsav.in/register">REGISTER</a></div>
 	  	</div>
-  			<Footer />
 		</div>
     );
   }

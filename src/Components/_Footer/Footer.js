@@ -1,22 +1,13 @@
-import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
-import './Footer.css';
+import React from 'react';
 
-class Footer extends Component {
-
-  constructor(){
-    super();
-    this.state={
-      deadUser: ''
-    }
-  }
-
-  render() {
-    return (
-      <div>
-      </div>
-    );
-  }
+export const Footer = () => {
+	return (
+		<div className="social colsoc">
+			<a className="soc" href="https://www.facebook.com/infotsav" target="_blank" rel="noopener noreferrer"><span className="fab fa-facebook-f"></span></a>
+			<a className="soc" href="https://www.instagram.com/infotsav19" target="_blank" rel="noopener noreferrer"><span className="fab fa-instagram"></span></a>
+			<a className="soc" href="https://play.google.com/store/apps/details?id=com.infotsav.test" target="_blank" rel="noopener noreferrer"><span className="fab fa-google-play"></span></a>
+			<a className="soc" href="https://www.linkedin.com/in/infotsav-iiitm-9b9941174/" target="_blank" rel="noopener noreferrer"><span className="fab fa-linkedin-in"></span></a>
+			<a className="soc" href="https://twitter.com/infotsav" target="_blank" rel="noopener noreferrer"><span className="fab fa-twitter"></span></a>
+		</div>
+	);
 }
-
-export default Footer;

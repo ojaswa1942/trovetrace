@@ -1,9 +1,19 @@
-#linkToHome404{
-	font-weight: 5;
+.social {
+  position: fixed;
+  font-size: 32px;
+  left: 2%;
+  bottom: 2%;
+  display: flex;
+  justify-content: space-around;
+  width: 250px;
+  z-index: 3;
 }
-.lostPics{
-	width: 300px;
+.soc {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  color: inherit;
 }
-.mavi1{
-	width: 310px;
+.soc :hover {
+  color: white;
 }

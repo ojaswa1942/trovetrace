@@ -27,7 +27,7 @@ class Play extends Component {
 
   render() {
     return (
-      <div>
+      <div className='bg-yellow min-vh-100'>
       </div>
     );
   }

@@ -58,8 +58,6 @@ app.get('/api/checkToken', withAuth, (req, res) => {
   res.sendStatus(200);
 });
 
-// app.get('/api/*', (req,res) => {res.status(404).redirect('https://www.infotsav.in/404')});
-
 const PORT = process.env.PORT || 3003
 app.listen(PORT, ()=>{
 	console.log(`We are on on port ${PORT}!`);
