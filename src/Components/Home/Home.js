@@ -16,20 +16,6 @@ class Home extends Component {
       deadUser: ''
     }
   }
-  onPress = (event) =>{
-    const deadUser = event.target.getAttribute('value');
-    this.setState({deadUser});
-    fetch('/api/lost', {
-      method: 'post',
-      headers: {'Content-type': 'application/json'},
-      body: JSON.stringify({
-        user: deadUser
-      })
-    })
-    .then(response => response.json())
-    .then(res => console.log(res))
-    .catch(console.log);
-  }
 
   render() {
     return (

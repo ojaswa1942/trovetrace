@@ -38,8 +38,35 @@ class App extends Component {
     }
   }
 
+  componentDidMount() {
+    this.requestData();
+  }
+
+  requestData = () =>{
+    let err=false;
+    fetch('/api/profilex')
+    .then(response => {
+      if(response.status!==200)
+        err=true;
+      return response.json();
+    })
+    .then(res => {
+      if(err)
+        throw res;
+      // this.updateUser(res.user);
+      // this.updateEvent(res.userEventReg);
+      // this.updateEventTeams(res.userTeams);
+      // this.updateUserScore(res.userScore)
+      this.updateLoginState(true);
+    })
+    .catch(console.log);
+  }
+
   updateLoginState = (value) =>{
     this.setState({isLoggedIn: value});
+  }
+  updateUserScore = (value) =>{
+    this.setState({userScore: value});
   }
 
   logOut = () =>{

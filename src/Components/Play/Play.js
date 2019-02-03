@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import headers from "../../assets/logo/headers.png"
 import {Footer} from '../_Footer/Footer';
+import {Loader} from '../_Loader/Loader'
 import './Play.css';
 
 class Play extends Component {
@@ -9,30 +10,42 @@ class Play extends Component {
   constructor(){
     super();
     this.state={
-      deadUser: ''
+      loading: true,
+      redirect: false,
+      error: false,
+      errorMessage: ''
     }
   }
-  onPress = (event) =>{
-    const deadUser = event.target.getAttribute('value');
-    this.setState({deadUser});
-    fetch('/api/lost', {
-      method: 'post',
-      headers: {'Content-type': 'application/json'},
-      body: JSON.stringify({
-        user: deadUser
-      })
+
+  componentWillMount(){
+    if(!this.props.isLoggedIn){
+    fetch('/api/checkToken')
+    .then(response => {
+      if(response.status!==200)
+        throw(response);
+        this.setState({ loading: false });
+        this.props.updateLoginState(true);
     })
-    .then(response => response.json())
-    .then(res => console.log(res))
-    .catch(console.log);
+    .catch(() => {this.setState({ loading: false, redirect: true });});
+    } else this.setState({loading: false});
   }
 
   render() {
+    const { loading, redirect } = this.state;
     return (
       <div className=''>
         <div>
           <a href='https://www.infotsav.in' target="_blank" rel="noopener noreferrer"><img src={headers} className="headim" alt="infotsav logo" /></a>
         </div>
+       {(!loading)?
+          (redirect)?
+            <Redirect to='/' />
+          :
+            <div>
+            </div>
+        :
+          <Loader />
+        }
         <Footer />
       </div>
     );
