@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import './Nav.css';
 
 class Nav extends Component {
@@ -27,8 +27,19 @@ class Nav extends Component {
 
   render() {
     return (
-      <div>
-      </div>
+      <header id='navBar' className="white tc pv4 avenir">
+
+        <nav className="bb tc w-70-ns center mt4 dib">
+          <NavLink exact activeStyle={{background: '#9EEBCF', color: 'black'}} className="f6 f5-l link bg-animate white hover-bg-light-green hover-black dib pa3 ph4-l " to="/">Home</NavLink>
+          <NavLink exact activeStyle={{background: '#9EEBCF', color: 'black'}} className="f6 f5-l link bg-animate white hover-bg-light-green hover-black dib pa3 ph4-l" to="/about">About</NavLink>
+          <NavLink exact activeStyle={{background: '#9EEBCF', color: 'black'}} className="f6 f5-l link bg-animate white hover-bg-light-green hover-black dib pa3 ph4-l " to="/rules">Rules</NavLink>
+          <NavLink exact activeStyle={{background: '#9EEBCF', color: 'black'}} className="f6 f5-l link bg-animate white hover-bg-light-green hover-black dib pa3 ph4-l " to="/score">Score</NavLink>
+          <NavLink exact activeStyle={{background: '#9EEBCF', color: 'black'}} className="f6 f5-l link bg-animate white hover-bg-light-green hover-black dib pa3 ph4-l " to="/contact">Contact</NavLink>
+          {(this.props.isLoggedIn)?
+            <span onClick={this.props.logOut} className='f6 f5-l link bg-animate white hover-bg-light-green hover-black dib pa3 ph4-l pointer'>Logout</span>
+          : null }
+        </nav>
+      </header>
     );
   }
 }

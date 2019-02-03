@@ -33,11 +33,11 @@ class Home extends Component {
 
   render() {
     return (
-      <div className='bg-blue min-vh-100'>
+      <div className=''>
         <div>
           <a href='https://www.infotsav.in' target="_blank" rel="noopener noreferrer"><img src={headers} className="headim" alt="infotsav logo" /></a>
         </div>
-        <div className='f1 pt6 b white b'>Trovetrace</div>
+        <div className='f1 b white b'>Trovetrace Image Here</div>
         <Login {...this.props} />
         <Footer />
       </div>

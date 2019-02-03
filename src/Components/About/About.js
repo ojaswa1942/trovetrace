@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
+import headers from "../../assets/logo/headers.png"
+import {Footer} from '../_Footer/Footer';
 import './About.css';
 
 class About extends Component {
@@ -28,6 +30,10 @@ class About extends Component {
   render() {
     return (
       <div>
+        <div>
+          <a href='https://www.infotsav.in' target="_blank" rel="noopener noreferrer"><img src={headers} className="headim" alt="infotsav logo" /></a>
+        </div>
+        <Footer />      
       </div>
     );
   }

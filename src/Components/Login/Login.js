@@ -33,6 +33,7 @@ class Login extends Component {
 		})
 		.catch((errr) => {
 			this.setState({ loading: false });
+			// console.log(errr);
 			registerFunctions(this);
 		});
 	} else this.setState({loading: false, redirect: true});
@@ -75,10 +76,10 @@ class Login extends Component {
 
   updateAllData = (user) => {
 	this.props.updateLoginState(true);
-	this.props.updateUser(user.user);
-	this.props.updateEvent(user.userEventReg);
-	this.props.updateEventTeams(user.userTeams);
-    this.props.updateUserScore(user.userScore);
+	// this.props.updateUser(user.user);
+	// this.props.updateEvent(user.userEventReg);
+	// this.props.updateEventTeams(user.userTeams);
+ //    this.props.updateUserScore(user.userScore);
   }
 
   render() {
@@ -133,7 +134,7 @@ class Login extends Component {
 					      </div>
 					    </div>
 			}
-		    <a target="_blank" rel="noopener noreferrer" href="https://www.infotsav.in/resetPass"><div id="sendto">Forgot your password?</div></a>
+		    <a target="_blank" rel="noopener noreferrer" href="https://www.infotsav.in/resetPass" className='white no-underline'><div id="sendto">Forgot your password?</div></a>
 		    <div id="sendto">Don't have an account? <a target="_blank" rel="noopener noreferrer" href="https://www.infotsav.in/register">REGISTER</a></div>
 	  	</div>
 		</div>
