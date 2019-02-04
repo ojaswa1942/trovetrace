@@ -34,7 +34,11 @@ class App extends Component {
         mobile: '',
       },
       isLoggedIn: false,
-      userScore: 0
+      userGameInfo: {
+        qid: 1,
+        score: 0,
+        hint: 0,
+      }
     }
   }
 
@@ -65,8 +69,22 @@ class App extends Component {
   updateLoginState = (value) =>{
     this.setState({isLoggedIn: value});
   }
+  updateUserInfo = (value) =>{
+    this.setState(Object.assign(this.state.userGameInfo, {
+      qid: value.qid,
+      score: value.score,
+      hint: value.hint,
+    }));
+  }
   updateUserScore = (value) =>{
-    this.setState({userScore: value});
+    this.setState(Object.assign(this.state.userGameInfo, {
+      score: score
+    }));
+  }  
+  updateUserHint = (value) =>{
+    this.setState(Object.assign(this.state.userGameInfo, {
+      hint: hint
+    }));
   }
 
   logOut = () =>{
@@ -85,7 +103,7 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App bg-blue min-vh-100">
+      <div className="App bg-red min-vh-100">
         <Route exact path={['/', '/play', '/about', '/rules', '/contact', '/score']} render={(props) =>
           <Nav {...props} 
             isLoggedIn={this.state.isLoggedIn}
@@ -103,13 +121,22 @@ class App extends Component {
           <Route path="/play" exact render={(props) =>
             <Play {...props} 
               isLoggedIn={this.state.isLoggedIn}
-              updateLoginState={this.updateLoginState} 
+              updateLoginState={this.updateLoginState}
+              userGameInfo={this.state.userGameInfo}
+              updateUserInfo={this.updateUserInfo}
+              updateUserScore={this.updateUserScore}
+              updateUserHint={this.updateUserHint}
             />}
           />
           <Route path="/about" exact component={About} />
           <Route path="/rules" exact component={Rules} />
           <Route path="/contact" exact component={Contact} />
-          <Route path="/score" exact component={Rank} />
+          <Route path="/score" exact render={(props) =>
+           <Rank {...props}
+              isLoggedIn={this.state.isLoggedIn}
+              userScore={this.state.userGameInfo.score}
+           />}
+          />
           <Route component={Lost} />
         </Switch>
       </div>
