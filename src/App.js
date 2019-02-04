@@ -14,12 +14,13 @@ const initialState = {
   user: {
     id: '',
     name: '',
-    email: '',
-    college: '',
-    mobile: '',
   },
   isLoggedIn: false,
-  userScore: 0
+  userGameInfo: {
+    qid: 0,
+    score: 0,
+    hint: 0,
+  }
 }
 
 class App extends Component {
@@ -29,13 +30,10 @@ class App extends Component {
       user: {
         id: '',
         name: '',
-        email: '',
-        college: '',
-        mobile: '',
       },
       isLoggedIn: false,
       userGameInfo: {
-        qid: 1,
+        qid: 0,
         score: 0,
         hint: 0,
       }
@@ -57,34 +55,44 @@ class App extends Component {
     .then(res => {
       if(err)
         throw res;
-      // this.updateUser(res.user);
-      // this.updateEvent(res.userEventReg);
-      // this.updateEventTeams(res.userTeams);
-      // this.updateUserScore(res.userScore)
+      this.checkForVerification(res.user.confirm);
+      this.updateUserGameInfo(res.userGame);
+      this.updateUserInfo(res.user);
       this.updateLoginState(true);
     })
     .catch(console.log);
   }
-
+  checkForVerification = (value) => {
+    if(!value)
+      this.logOut();
+  }
   updateLoginState = (value) =>{
     this.setState({isLoggedIn: value});
   }
+  updateUserGameInfo = (value) =>{
+    this.setState({userGameInfo: {
+        qid: value.qid,
+        score: value.score,
+        hint: value.hint
+      }
+    });
+  }
   updateUserInfo = (value) =>{
-    this.setState(Object.assign(this.state.userGameInfo, {
-      qid: value.qid,
-      score: value.score,
-      hint: value.hint,
-    }));
+    this.setState({user: {
+        id: value.ifid,
+        name: value.name
+      }
+    });
   }
   updateUserScore = (value) =>{
-    this.setState(Object.assign(this.state.userGameInfo, {
-      score: score
-    }));
+    Object.assign(this.state.userGameInfo, {
+      score: value
+    });
   }  
   updateUserHint = (value) =>{
-    this.setState(Object.assign(this.state.userGameInfo, {
-      hint: hint
-    }));
+    Object.assign(this.state.userGameInfo, {
+      hint: value
+    });
   }
 
   logOut = () =>{
@@ -116,6 +124,8 @@ class App extends Component {
             <Home {...props} 
               isLoggedIn={this.state.isLoggedIn}
               updateLoginState={this.updateLoginState} 
+              updateUserGameInfo={this.updateUserGameInfo}
+              updateUserInfo={this.updateUserInfo}
             />}
           />
           <Route path="/play" exact render={(props) =>
@@ -123,7 +133,7 @@ class App extends Component {
               isLoggedIn={this.state.isLoggedIn}
               updateLoginState={this.updateLoginState}
               userGameInfo={this.state.userGameInfo}
-              updateUserInfo={this.updateUserInfo}
+              updateUserGameInfo={this.updateUserGameInfo}
               updateUserScore={this.updateUserScore}
               updateUserHint={this.updateUserHint}
             />}

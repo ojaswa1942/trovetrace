@@ -1,5 +1,5 @@
 
-const handleEasterRedeem = (req,res,db,xss)=>{
+const handleChatbotResponse = (req,res,db,xss)=>{
 	const xssOptions = {
 		whiteList: [],
 		stripIgnoreTag: [],
@@ -122,6 +122,6 @@ const fetchScore = (req,res,db)=>{
 }
 
 module.exports={
-	handleEasterRedeem: handleEasterRedeem,
+	handleChatbotResponse: handleChatbotResponse,
 	fetchScore: fetchScore
 };

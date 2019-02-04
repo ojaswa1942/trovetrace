@@ -75,11 +75,11 @@ class Login extends Component {
   }
 
   updateAllData = (user) => {
-	this.props.updateLoginState(true);
-	// this.props.updateUser(user.user);
-	// this.props.updateEvent(user.userEventReg);
-	// this.props.updateEventTeams(user.userTeams);
- //    this.props.updateUserScore(user.userScore);
+  	if(user.user.confirm){
+		this.props.updateLoginState(true);
+		this.props.updateUserInfo(user.user);
+		this.props.updateUserGameInfo(user.userGame);
+	}
   }
 
   render() {

@@ -6,11 +6,11 @@ const knex = require('knex');
 const xss = require('xss');
 const cookieParser = require('cookie-parser');
 const signin = require('./controllers/signin');
-const profilex = require('./controllers/profilex');
-const withAdmin = require('./controllers/withAdmin');
-const withAuth = require('./middleware');
+const profilex = require('./middleware/profilex');
+const withAdmin = require('./middleware/withAdmin');
+const withAuth = require('./middleware/withAuth');
 const lost = require('./controllers/lost');
-const easter = require('./controllers/easter');
+const chatbot = require('./controllers/chatbot');
 require("dotenv").config();
 
 const db = knex({
@@ -45,12 +45,12 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(cookieParser());
 
 app.get('/api', (req,res)=>{ res.send('it is working')});
-app.post('/api/signin', (req,res)=> {signin.handleSignin(req, res, db, bcrypt, xss)});
-app.post('/api/easterRedeem', withAuth, (req,res)=>{easter.handleEasterRedeem(req, res, db, xss)});
-app.post('/api/easterScore', (req,res)=>{easter.fetchScore(req, res, db)});
+app.post('/api/signin', (req,res)=> {signin.handleSignin(req, res, db, dbTrace, bcrypt, xss)});
+app.post('/api/chatbot', withAuth, (req,res)=>{chatbot.handleChatbotResponse(req, res, dbTrace, xss)});
+app.post('/api/score', (req,res)=>{easter.fetchScore(req, res, dbTrace)});
 app.post('/api/lost', (req,res)=>{lost.handleLostUpdate(req, res, db)});
 app.get('/api/logout', (req, res) => {res.clearCookie('token'); res.status(301).redirect('/login');});
-app.get('/api/profilex', withAuth, (req, res) => {profilex.handleProfile(req, res, db)});
+app.get('/api/profilex', withAuth, (req, res) => {profilex.handleProfile(req, res, db, dbTrace)});
 app.get('/api/checkAdmin', withAdmin, (req, res) => {
   res.sendStatus(200);
 });
