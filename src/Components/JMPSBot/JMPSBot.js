@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
+// import ChatBot from 'react-simple-chatbot';
 import {Link} from 'react-router-dom';
-import './Chatbot.css';
+import { Widget, addResponseMessage } from 'react-chat-widget';
+import 'react-chat-widget/lib/styles.css';
+import './JMPSBot.css';
 
-class Chatbot extends Component {
+class JMPSBot extends Component {
 
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state={
       deadUser: ''
     }
   }
+  componentDidMount(){
+    addResponseMessage('Hey! Interact with me to answer or get hints');
+  }
+
   onPress = (event) =>{
     const deadUser = event.target.getAttribute('value');
     this.setState({deadUser});
@@ -28,9 +35,14 @@ class Chatbot extends Component {
   render() {
     return (
       <div>
+        <Widget 
+          handleNewUserMessage={console.log}
+          title='JMPS'
+          subtitle=''
+         />
       </div>
     );
   }
 }
 
-export default Chatbot;
+export default JMPSBot;
