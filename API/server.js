@@ -11,6 +11,8 @@ const withAdmin = require('./middleware/withAdmin');
 const withAuth = require('./middleware/withAuth');
 const lost = require('./controllers/lost');
 const chatbot = require('./controllers/chatbot');
+const score = require('./controllers/score');
+const newGame = require('./controllers/newGame');
 require("dotenv").config();
 
 const db = knex({
@@ -47,8 +49,9 @@ app.use(cookieParser());
 app.get('/api', (req,res)=>{ res.send('it is working')});
 app.post('/api/signin', (req,res)=> {signin.handleSignin(req, res, db, dbTrace, bcrypt, xss)});
 app.post('/api/chatbot', withAuth, (req,res)=>{chatbot.handleChatbotResponse(req, res, dbTrace, xss)});
-app.post('/api/score', (req,res)=>{easter.fetchScore(req, res, dbTrace)});
+app.post('/api/score', (req,res)=>{score.handleHighScore(req, res, dbTrace)});
 app.post('/api/lost', (req,res)=>{lost.handleLostUpdate(req, res, db)});
+app.get('/api/newGame', withAuth, (req,res)=>{newGame.handleNewGame(req, res, db, dbTrace)});
 app.get('/api/logout', (req, res) => {res.clearCookie('token'); res.status(301).redirect('/login');});
 app.get('/api/profilex', withAuth, (req, res) => {profilex.handleProfile(req, res, db, dbTrace)});
 app.get('/api/checkAdmin', withAdmin, (req, res) => {
