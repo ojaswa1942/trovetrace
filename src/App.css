@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  background-image: url('troveBack.jpg');
+  background-size: cover;
 }
 
 @keyframes App-logo-spin {

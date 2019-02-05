@@ -17,3 +17,11 @@
 .soc :hover {
   color: white;
 }
+.title{
+  size: 250px;
+  padding-top: 6%;
+  width: 85%;
+  filter: opacity(0.85);
+  margin: 0;
+
+}
