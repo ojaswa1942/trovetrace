@@ -111,7 +111,7 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App bg-red min-vh-100">
+      <div className="App min-vh-100">
         <Route exact path={['/', '/play', '/about', '/rules', '/contact', '/score']} render={(props) =>
           <Nav {...props} 
             isLoggedIn={this.state.isLoggedIn}
