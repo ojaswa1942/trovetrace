@@ -26,8 +26,13 @@ class JMPSBot extends Component {
         addLinkSnippet({title: `Infotsav'19`, link: `https://www.infotsav.in`, target: `_blank`})
       }, 1000);
     else {
+      // this.requestMessageResponse(message);
       setTimeout(() => {addResponseMessage(message);}, 3000)
     }
+  }
+
+  requestMessageResponse = (message) => {
+    
   }
 
   render() {

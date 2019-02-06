@@ -12,6 +12,8 @@ const withAuth = require('./middleware/withAuth');
 const lost = require('./controllers/lost');
 const chatbot = require('./controllers/chatbot');
 const score = require('./controllers/score');
+const question = require('./controllers/question');
+const hint = require('./controllers/hint');
 const newGame = require('./controllers/newGame');
 require("dotenv").config();
 
@@ -48,9 +50,11 @@ app.use(cookieParser());
 
 app.get('/api', (req,res)=>{ res.send('it is working')});
 app.post('/api/signin', (req,res)=> {signin.handleSignin(req, res, db, dbTrace, bcrypt, xss)});
-app.post('/api/chatbot', withAuth, (req,res)=>{chatbot.handleChatbotResponse(req, res, dbTrace, xss)});
+app.post('/api/chatbot', withAuth, (req,res)=>{chatbot.handleChatbotResponse(req, res, db, dbTrace, xss)});
 app.post('/api/score', (req,res)=>{score.handleHighScore(req, res, dbTrace)});
 app.post('/api/lost', (req,res)=>{lost.handleLostUpdate(req, res, db)});
+app.get('/api/question', withAuth, (req,res)=>{question.handleProvideQuestion(req, res, dbTrace)});
+app.get('/api/hint', withAuth, (req,res)=>{hint.handleHint(req, res, db, dbTrace)});
 app.get('/api/newGame', withAuth, (req,res)=>{newGame.handleNewGame(req, res, db, dbTrace)});
 app.get('/api/logout', (req, res) => {res.clearCookie('token'); res.status(301).redirect('/login');});
 app.get('/api/profilex', withAuth, (req, res) => {profilex.handleProfile(req, res, db, dbTrace)});
