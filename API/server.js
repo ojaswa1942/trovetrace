@@ -51,7 +51,7 @@ app.use(cookieParser());
 app.get('/api', (req,res)=>{ res.send('it is working')});
 app.post('/api/signin', (req,res)=> {signin.handleSignin(req, res, db, dbTrace, bcrypt, xss)});
 app.post('/api/chatbot', withAuth, (req,res)=>{chatbot.handleChatbotResponse(req, res, db, dbTrace, xss)});
-app.post('/api/score', (req,res)=>{score.handleHighScore(req, res, dbTrace)});
+app.get('/api/score', (req,res)=>{score.handleHighScore(req, res, dbTrace)});
 app.post('/api/lost', (req,res)=>{lost.handleLostUpdate(req, res, db)});
 app.get('/api/question', withAuth, (req,res)=>{question.handleProvideQuestion(req, res, dbTrace)});
 app.get('/api/hint', withAuth, (req,res)=>{hint.handleHint(req, res, db, dbTrace)});

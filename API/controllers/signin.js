@@ -35,28 +35,43 @@ const handleSignin = (req,res,db,dbTrace,bcrypt,xss)=>{
 									confirm: user[0].confirm
 								};
 								if(player.length){
-									userGame = {
-										score: player[0].score,
-										qid: player[0].qid,
-										hint: player[0].hint
-									};
+				 					dbTrace('questions').select('*').where({qid: player[0].qid})
+									.then((ques) => {
+										userGame = {
+											score: player[0].score,
+											qid: player[0].qid,
+											hint: player[0].hint,
+											question: ques[0].question
+										};
+										let userData = {
+											user: userInfo,
+											userGame: userGame
+										};
+										const payload = {email};
+								        const token = jwt.sign(payload, secret, {
+								        	expiresIn: '30d'
+								        });
+								        res.status(200).cookie('token', token, { maxAge: 2419200000, httpOnly: true }).json(userData)
+									})
 				 				}
+
 				 				else {
 				 					userGame = {
 				 						score: 0,
 				 						qid: 0,
-				 						hint: 0
+				 						hint: 0,
+				 						question: null
 				 					};
-				 				}
-				 				let userData = {
-									user: userInfo,
-									userGame: userGame
-								};
-							 	const payload = {email};
-						        const token = jwt.sign(payload, secret, {
-						        	expiresIn: '30d'
-						        });
-						        res.status(200).cookie('token', token, { maxAge: 2419200000, httpOnly: true }).json(userData)
+					 				let userData = {
+										user: userInfo,
+										userGame: userGame
+									};
+								 	const payload = {email};
+							        const token = jwt.sign(payload, secret, {
+							        	expiresIn: '30d'
+							        });
+							        res.status(200).cookie('token', token, { maxAge: 2419200000, httpOnly: true }).json(userData)
+							    }
 				 			})
 				 		})
 						.catch(err => res.status(400).json('Invalid User'))

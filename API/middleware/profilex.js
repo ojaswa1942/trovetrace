@@ -14,24 +14,34 @@
 					confirm: user[0].confirm
 				};
 				if(player.length){
-					userGame = {
-						score: player[0].score,
-						qid: player[0].qid,
-						hint: player[0].hint
-					};
+ 					dbTrace('questions').select('*').where({qid: player[0].qid})
+					.then((ques) => {
+						userGame = {
+							score: player[0].score,
+							qid: player[0].qid,
+							hint: player[0].hint,
+							question: ques[0].question
+						};
+						let userData = {
+							user: userInfo,
+							userGame: userGame
+						};
+						return res.status(200).json(userData);
+					})
  				}
  				else {
  					userGame = {
  						score: 0,
  						qid: 0,
- 						hint: 0
+ 						hint: 0,
+ 						question: null
  					};
- 				}
- 				let userData = {
-					user: userInfo,
-					userGame: userGame
-				};
-				return res.status(200).json(userData);
+	 				let userData = {
+						user: userInfo,
+						userGame: userGame
+					};
+					return res.status(200).json(userData);
+			    }
  			})
 		}
 		else

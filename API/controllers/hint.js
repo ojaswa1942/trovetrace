@@ -1,3 +1,8 @@
+const toUTC = (now) => {
+	var utc = new Date(now.getTime() + now.getTimezoneOffset() * 60000);
+	return utc;
+}
+
 const handleHint = (req,res,db,dbTrace)=>{
 	const email = req.email;
  	db.select('*').from('users').where({email})
@@ -7,6 +12,7 @@ const handleHint = (req,res,db,dbTrace)=>{
 			dbTrace('players').select('*').where({ifid})
 			.then(player => {
 				const {hint, qid} = player[0];
+				const timeDiff = (toUTC(new Date()) - toUTC(player[0].timestamp) );
 				if(hint){
 					dbTrace('questions').select('*').where({qid})
 					.then(ques => {
@@ -16,7 +22,8 @@ const handleHint = (req,res,db,dbTrace)=>{
 				else {
 					dbTrace.transaction(trx2 => {
 						return trx2('players')
-						.update({hint: 1})
+						.update({hint: 1, time_taken: timeDiff})
+						.decrement({score: 20})
 						.where({ifid})
 						.then(() => {
 							return trx2('questions').select('*').where({qid})

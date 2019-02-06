@@ -21,6 +21,7 @@ const initialState = {
     qid: 0,
     score: 0,
     hint: 0,
+    question: ''
   },
   badge: 2
 }
@@ -39,6 +40,7 @@ class App extends Component {
         qid: 0,
         score: 0,
         hint: 0,
+        question: ''
       }
     }
   }
@@ -84,7 +86,8 @@ class App extends Component {
     this.setState({userGameInfo: {
         qid: value.qid,
         score: value.score,
-        hint: value.hint
+        hint: value.hint,
+        question: value.question
       }
     });
   }
