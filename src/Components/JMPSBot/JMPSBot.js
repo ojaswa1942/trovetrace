@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-// import ChatBot from 'react-simple-chatbot';
 import {Link} from 'react-router-dom';
-import { Widget, addResponseMessage } from 'react-chat-widget';
+import { Widget, addResponseMessage, addLinkSnippet } from 'react-chat-widget';
+import arcreactor from '../../assets/pictures/arcreactor.png'
 import 'react-chat-widget/lib/styles.css';
 import './JMPSBot.css';
 
@@ -10,35 +10,35 @@ class JMPSBot extends Component {
   constructor(props){
     super(props);
     this.state={
-      deadUser: ''
     }
   }
   componentDidMount(){
-    addResponseMessage('Hey! Interact with me to answer or get hints');
   }
 
-  onPress = (event) =>{
-    const deadUser = event.target.getAttribute('value');
-    this.setState({deadUser});
-    fetch('/api/lost', {
-      method: 'post',
-      headers: {'Content-type': 'application/json'},
-      body: JSON.stringify({
-        user: deadUser
-      })
-    })
-    .then(response => response.json())
-    .then(res => console.log(res))
-    .catch(console.log);
+  handleMessage = (message) =>{
+    if(message.toLowerCase().includes('fuck'))
+      setTimeout(() => {addResponseMessage('What the fuck?');}, 1000);
+    else if(message.toLowerCase().includes('sex'))
+      setTimeout(() => {addResponseMessage('I want to get laid!');}, 1000);
+    else if(message.toLowerCase().includes('infotsav'))
+      setTimeout(() => {
+        addResponseMessage('Infotsav is the techno-managerial fest of ABV-IIITM, Gwalior. You can know more about Infotsav here:');
+        addLinkSnippet({title: `Infotsav'19`, link: `https://www.infotsav.in`, target: `_blank`})
+      }, 1000);
+    else {
+      setTimeout(() => {addResponseMessage(message);}, 3000)
+    }
   }
 
   render() {
+    let {badge} = this.props;
     return (
       <div>
         <Widget 
-          handleNewUserMessage={console.log}
+          handleNewUserMessage={this.handleMessage}
           title='JMPS'
           subtitle=''
+          profileAvatar={arcreactor}
          />
       </div>
     );

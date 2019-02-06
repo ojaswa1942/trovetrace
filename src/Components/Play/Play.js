@@ -43,7 +43,7 @@ class Play extends Component {
             <Redirect to='/' />
           :
             <div>
-              <JMPSBot {...this.props} />
+              <JMPSBot {...this.props}  />
             </div>
         :
           <Loader />

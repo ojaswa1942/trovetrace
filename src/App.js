@@ -8,6 +8,7 @@ import Contact from './Components/Contact/Contact'
 import Rank from './Components/Rank/Rank'
 import Nav from './Components/Nav/Nav'
 import Play from './Components/Play/Play'
+import { addResponseMessage } from 'react-chat-widget';
 import './App.css';
 
 const initialState = {
@@ -20,7 +21,8 @@ const initialState = {
     qid: 0,
     score: 0,
     hint: 0,
-  }
+  },
+  badge: 2
 }
 
 class App extends Component {
@@ -31,6 +33,7 @@ class App extends Component {
         id: '',
         name: '',
       },
+      badge: 2,
       isLoggedIn: false,
       userGameInfo: {
         qid: 0,
@@ -55,12 +58,17 @@ class App extends Component {
     .then(res => {
       if(err)
         throw res;
+      this.sendWelcomeMessage();
       this.checkForVerification(res.user.confirm);
       this.updateUserGameInfo(res.userGame);
       this.updateUserInfo(res.user);
       this.updateLoginState(true);
     })
     .catch(console.log);
+  }
+  sendWelcomeMessage = () => {
+    addResponseMessage("Hellooo.. Welcome to the game!");
+    addResponseMessage(`I'm JMPS! You can interact with me to answer and get hints.`);
   }
   checkForVerification = (value) => {
     if(!value)
@@ -69,6 +77,9 @@ class App extends Component {
   updateLoginState = (value) =>{
     this.setState({isLoggedIn: value});
   }
+  updateBadge = (value) =>{
+    this.setState({badge: value});
+  }  
   updateUserGameInfo = (value) =>{
     this.setState({userGameInfo: {
         qid: value.qid,
@@ -136,6 +147,8 @@ class App extends Component {
               updateUserGameInfo={this.updateUserGameInfo}
               updateUserScore={this.updateUserScore}
               updateUserHint={this.updateUserHint}
+              badge={this.state.badge}
+              updateBadge={this.updateBadge}
             />}
           />
           <Route path="/about" exact component={About} />

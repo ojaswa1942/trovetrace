@@ -39,12 +39,12 @@ a{
 #headdin {
   font-size: 2em;
   color: #fff;
-  z-index: 2;
+  z-index: ;
   cursor: default;
   /*transform: translate3d(0, -50px, 0);*/
 }
 .headim {
-  z-index: 2;
+  z-index: ;
   position: absolute;
   top: 2%;
   left: 2%;
@@ -178,7 +178,7 @@ a{
     height: 120px;
   }
   .headim {
-    z-index: 2;
+    /*z-index: 2;*/
     position: absolute;
     top: 2%;
     left: 2%;

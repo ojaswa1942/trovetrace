@@ -29,7 +29,7 @@ class Nav extends Component {
     return (
       <header id='navBar' className="white tc pv4 avenir">
 
-        <nav className="bb tc w-70-ns center mt4 dib">
+        <nav className="bb tc w-70-ns center mt4-ns mt5 dib">
           {(this.props.isLoggedIn)?
           <NavLink exact activeStyle={{background: '#9EEBCF', color: 'black'}} className="f6 f5-l link bg-animate white hover-bg-light-green hover-black dib pa3 ph4-l " to="/play">Play</NavLink>
           : 
