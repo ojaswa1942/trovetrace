@@ -16,7 +16,11 @@ const handleHint = (req,res,db,dbTrace)=>{
 				if(hint){
 					dbTrace('questions').select('*').where({qid})
 					.then(ques => {
-						return res.status(200).json(ques[0].hint);
+						let info={
+							hint: ques[0].hint,
+							score: player[0].score
+						};
+						return res.status(200).json(info);
 					})
 				}
 				else {
@@ -28,7 +32,11 @@ const handleHint = (req,res,db,dbTrace)=>{
 						.then(() => {
 							return trx2('questions').select('*').where({qid})
 							.then(ques => {
-								return res.status(200).json(ques[0].hint);
+								let info={
+									hint: ques[0].hint,
+									score: player[0].score - 20
+								};
+								return res.status(200).json(info);
 							})
 							.then(trx2.commit)
 						})

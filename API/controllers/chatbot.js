@@ -1,8 +1,11 @@
 const checkRequestForAnswer = (ques, message) => {
 	if(message.toLowerCase().includes((ques.answer).toLowerCase()))
 		return true;
-
 	else return false;
+}
+
+const checkRequestForBonus = (ques, message) => {
+	
 }
 
 const toUTC = (now) => {
@@ -25,9 +28,9 @@ const handleChatbotResponse = (req,res,db,dbTrace,xss)=>{
 	.then(user => {
 		if(user.length){
 			const {ifid} = user[0];
-			console.log('Chatbot Attempt =>', message, '<=');
 			dbTrace.select('*').from('players').where({ifid})
 			.then(player => {
+				console.log(player[0].qid, 'Attempt =>', message, '<=', user[0].name, user[0].college);
 				if(player.length){
 					const {qid} = player[0];
 					const timeDiff = (toUTC(new Date()) - toUTC(player[0].timestamp) );
@@ -55,15 +58,20 @@ const handleChatbotResponse = (req,res,db,dbTrace,xss)=>{
 												quesInfo = {
 													success: true,
 													end: false,
+													score: player[0].score + 100,
 													qid: newQuest[0].qid,
-													ques: newQuest[0].question
+													question: newQuest[0].question,
+													hint: 0
 												};
 											}
 											else{
 												quesInfo = {
 													success: true,
 													end: true,
-													qid: qid+1
+													hint: 0,
+													score: player[0].score + 100,
+													qid: qid+1,
+													question: `That's all folks!`
 												};
 											}
 											res.status(200).json(quesInfo);
@@ -75,7 +83,8 @@ const handleChatbotResponse = (req,res,db,dbTrace,xss)=>{
 							}
 							else {
 								res.status(200).json({
-									success: false
+									success: false,
+									score: player[0].score
 								});
 							}
 						}

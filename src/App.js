@@ -8,7 +8,7 @@ import Contact from './Components/Contact/Contact'
 import Rank from './Components/Rank/Rank'
 import Nav from './Components/Nav/Nav'
 import Play from './Components/Play/Play'
-import { addResponseMessage } from 'react-chat-widget';
+import { addResponseMessage, toggleInputDisabled } from 'react-chat-widget';
 import './App.css';
 
 const initialState = {
@@ -83,6 +83,11 @@ class App extends Component {
     this.setState({badge: value});
   }  
   updateUserGameInfo = (value) =>{
+    if(value.qid == 3){
+      toggleInputDisabled();
+      addResponseMessage(`That's the end, my friend!  
+        *Plays See You Again*`);
+  }
     this.setState({userGameInfo: {
         qid: value.qid,
         score: value.score,
@@ -126,7 +131,7 @@ class App extends Component {
   render() {
     return (
       <div className="App min-vh-100">
-        <Route exact path={['/', '/play', '/about', '/rules', '/contact', '/score']} render={(props) =>
+        <Route exact path={['/', '/play/:rubbish?/:value?', '/about', '/rules', '/contact', '/score']} render={(props) =>
           <Nav {...props} 
             isLoggedIn={this.state.isLoggedIn}
             updateLoginState={this.updateLoginState} 
@@ -142,10 +147,11 @@ class App extends Component {
               updateUserInfo={this.updateUserInfo}
             />}
           />
-          <Route path="/play" exact render={(props) =>
+          <Route path="/play/:bulshit?/:value?" exact render={(props) =>
             <Play {...props} 
               isLoggedIn={this.state.isLoggedIn}
               updateLoginState={this.updateLoginState}
+              userInfo={this.state.user}
               userGameInfo={this.state.userGameInfo}
               updateUserGameInfo={this.updateUserGameInfo}
               updateUserScore={this.updateUserScore}

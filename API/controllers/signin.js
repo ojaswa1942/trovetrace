@@ -37,12 +37,22 @@ const handleSignin = (req,res,db,dbTrace,bcrypt,xss)=>{
 								if(player.length){
 				 					dbTrace('questions').select('*').where({qid: player[0].qid})
 									.then((ques) => {
-										userGame = {
-											score: player[0].score,
-											qid: player[0].qid,
-											hint: player[0].hint,
-											question: ques[0].question
-										};
+										if(ques.length){
+											userGame = {
+												score: player[0].score,
+												qid: player[0].qid,
+												hint: player[0].hint,
+												question: ques[0].question
+											};
+										}
+										else {
+											userGame = {
+												score: player[0].score,
+												qid: player[0].qid,
+												hint: player[0].hint,
+												question: `That's all folks!`
+											};
+										}
 										let userData = {
 											user: userInfo,
 											userGame: userGame

@@ -53,7 +53,6 @@ app.post('/api/signin', (req,res)=> {signin.handleSignin(req, res, db, dbTrace, 
 app.post('/api/chatbot', withAuth, (req,res)=>{chatbot.handleChatbotResponse(req, res, db, dbTrace, xss)});
 app.get('/api/score', (req,res)=>{score.handleHighScore(req, res, dbTrace)});
 app.post('/api/lost', (req,res)=>{lost.handleLostUpdate(req, res, db)});
-app.get('/api/question', withAuth, (req,res)=>{question.handleProvideQuestion(req, res, dbTrace)});
 app.get('/api/hint', withAuth, (req,res)=>{hint.handleHint(req, res, db, dbTrace)});
 app.get('/api/newGame', withAuth, (req,res)=>{newGame.handleNewGame(req, res, db, dbTrace)});
 app.get('/api/logout', (req, res) => {res.clearCookie('token'); res.status(301).redirect('/login');});
