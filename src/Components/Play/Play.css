@@ -7,3 +7,26 @@
 .mavi1{
 	width: 310px;
 }
+
+.button{
+	border: 2px solid white;
+	border-radius: 50px;
+	height: 80px;
+	width: 300px;
+	position: absolute;
+	left: 42%;
+	margin-top: 300px;
+	font-size: 2.5rem;
+	padding: 15px;
+	color: white;
+	/*background-color: white;*/
+}
+
+.button:hover{
+	color:#ef3131;
+	background-color: white;
+}
+
+.timeDisplay{
+	color: white;
+}

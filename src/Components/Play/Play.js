@@ -16,6 +16,18 @@ class Play extends Component {
       error: false,
       errorMessage: ''
     }
+    this.timeFlag=0;
+  }
+
+  render(){
+    if(1){
+        return(
+          <h3>C</h3>
+        );
+    }
+    return(
+        <h1>Byeee</h1>
+    );
   }
 
   componentWillMount(){
@@ -33,10 +45,28 @@ class Play extends Component {
 
   render() {
     const { loading, redirect } = this.state;
+    const timeFlag=1;
+    const date = new Date(0);
     return (
       <div className=''>
         <div>
           <a href='https://www.infotsav.in' target="_blank" rel="noopener noreferrer"><img src={headers} className="headim" alt="infotsav logo" /></a>
+        </div>
+        <div>
+          {
+            (!timeFlag)?
+            <div className="timeDisplay">
+              <h1>Contest Starts in: </h1>
+              <h1 className="timeDisplay"></h1>
+            </div>
+          :
+            <div>
+               <div className="button">
+                  Enter Contest
+               </div>
+            </div>
+          }
+
         </div>
        {(!loading)?
           (redirect)?

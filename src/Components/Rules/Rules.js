@@ -33,6 +33,21 @@ class Rules extends Component {
         <div>
           <a href='https://www.infotsav.in' target="_blank" rel="noopener noreferrer"><img src={headers} className="headim" alt="infotsav logo" /></a>
         </div>
+        <div className="rules">
+          <b >PLEASE READ CAREFULLY</b>
+        </div>
+        <div className="read">
+          <br></br>
+          <ul>
+            <li>The participant who clears the maximum no of levels earliest would be declared as the winner.</li><br />
+            <li>In case of more than one participant solving the equal number of questions, the one who solves earlier would be declared as the winner. </li><br />
+            <li>The quiz will be over in 2 hours.</li><br />
+            <li>Goodies are for 1st place only</li><br />
+            <li>Anyone caught cheating or trying to post answers on any forum would be disqualified.</li><br />
+            <li>The discretion & judgement of the organizers is final.</li><br />
+            <li>Each question is of 100 marks.</li><br />
+          </ul>
+        </div>
         <Footer />      
       </div>
     );
