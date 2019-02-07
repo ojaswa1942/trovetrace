@@ -33,6 +33,14 @@ class Contact extends Component {
         <div>
           <a href='https://www.infotsav.in' target="_blank" rel="noopener noreferrer"><img src={headers} className="headim" alt="infotsav logo" /></a>
         </div>
+        <div className="support">
+          <h1>ORGANIZERS</h1>
+          <h2> Mukul Sikka - 7470485414 <br /><br /> Juhi Tiwari - 8700728483<br /></h2>
+           <h1>Technical Support</h1>
+          <h2> Prem Sarswat - 9950591608 <br /><br /> Ojaswa Sharma - 9424542227 <br /></h2>
+           <h1>For Any Queries Contact :</h1>
+          <h2> <a href="mailto:admin@infotsav.in?Subject=TroveTrace" target="_top">admin (admin@infotsav.in)</a> <br /></h2>
+        </div>
         <Footer />      
       </div>
     );

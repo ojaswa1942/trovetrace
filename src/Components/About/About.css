@@ -7,3 +7,19 @@
 .mavi1{
 	width: 310px;
 }
+
+.Text{
+	color: white;
+	font-size: 22px;
+	text-align: center;
+	font-family: helvetica ,sans-serif;
+	padding-top: 40px;
+	padding-right: 8%;
+	padding-left: 8%;
+}
+
+.trove{
+	padding-top: 30px;
+	opacity: 0.8;
+	width:60%;
+}
