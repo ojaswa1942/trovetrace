@@ -100,7 +100,8 @@ const handleChatbotResponse = (req,res,db,dbTrace,xss)=>{
 								}
 							}
 							else if(qid == 2){
-
+								if(msg.includes('nurturing'))
+									return provideResponseForCorrectAnswer(ifid, res, dbTrace, qid, timeDiff, player);
 							}
 							else if(qid == 3){
 

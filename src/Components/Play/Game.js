@@ -4,6 +4,7 @@ import {Loader} from '../_Loader/Loader';
 import JMPSBot from '../JMPSBot/JMPSBot';
 import HINT from '../../assets/pictures/hint.png'
 import Modal from 'react-awesome-modal';
+import Countdown from 'react-countdown-now';
 
 class Play extends Component {
 
@@ -15,7 +16,6 @@ class Play extends Component {
       error: false,
       errorMessage: '',
       visibleModal: false,
-      hintMessage: ''
     }
   }
 
@@ -33,17 +33,35 @@ class Play extends Component {
           effect="fadeInUp"
           onClickAway={() => this.setState({visibleModal: false})}
         >
-          <div className='black f5 flex flex-column items-center pa3 bg-near-gray'>
-            <div className='mb2 b'>Hint:</div><div className='t mh2'>{userGameInfo.hintMessage}</div>
+          <div className='black f5 flex flex-column items-center pa2 bg-near-gray'>
+            <div className='mb2 b'>Hint:</div>
+            {(!userGameInfo.hintImage)?
+              <div className='t mh2'>{userGameInfo.hintMessage}</div>
+              :
+              <div className='t mh2 mw7'><img alt='Hint' src={userGameInfo.hintImageURL} /></div>
+            }
           </div>
         </Modal>        
         <div className='white f1 b pt6'>
-          Q{userGameInfo.qid}. {userGameInfo.question}
+          {(!userGameInfo.quesImage)?
+            <div>
+              Q{userGameInfo.qid}. {userGameInfo.question}
+            </div>
+            :
+            <div>
+              <div className='mw7 tc'>
+                <img alt='Ques' src={userGameInfo.quesImageURL} />
+                <br />
+
+              </div>
+
+            </div>
+          }
         </div>
         <div className='tl'>
           <img className='hintImage mw4 pointer' src={HINT} onClick={this.getHint} />
         </div>
-        <JMPSBot {...this.props} hintMessage={this.state.hintMessage} />
+        <JMPSBot {...this.props} />
       </div>
     );
   }

@@ -93,7 +93,7 @@ class App extends Component {
     this.setState({badge: value});
   }  
   updateUserGameInfo = (value) =>{
-    if(value.qid === 3){
+    if(value.qid === 10){
       toggleInputDisabled();
       addResponseMessage(`That's the end, my friend!  
         *Plays See You Again*`);
@@ -154,7 +154,7 @@ class App extends Component {
     console.log(this.state);
     return (
       <div className="App min-vh-100">
-        <Route exact path={['/', '/play/:rubbish?/:value?', '/about', '/rules', '/contact', '/score']} render={(props) =>
+        <Route exact path={['/', '/play/:value?', '/about', '/rules', '/contact', '/score']} render={(props) =>
           <Nav {...props} 
             isLoggedIn={this.state.isLoggedIn}
             updateLoginState={this.updateLoginState} 
@@ -170,7 +170,7 @@ class App extends Component {
               updateUserInfo={this.updateUserInfo}
             />}
           />
-          <Route path="/play/:bulshit?/:value?" exact render={(props) =>
+          <Route path="/play/:value?" exact render={(props) =>
             <Play {...props} 
               isLoggedIn={this.state.isLoggedIn}
               updateLoginState={this.updateLoginState}
