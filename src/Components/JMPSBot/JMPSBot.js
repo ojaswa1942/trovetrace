@@ -65,7 +65,7 @@ class JMPSBot extends Component {
     `Awww! So cute.. try again!`,
     `Well, you can always give up`,
     `You can always contact my creators,
-    They will never help you`,
+    they will never help you`,
     `You are as fast as a turtle, don't give up!`
   ];
 

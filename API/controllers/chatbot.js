@@ -117,6 +117,10 @@ const handleChatbotResponse = (req,res,db,dbTrace,xss)=>{
 								else if(!msg.localeCompare('5764801'))
 									return provideResponseForCorrectAnswer(ifid, res, dbTrace, qid, timeDiff, player);
 							}
+							else if(qid === 5){
+								if(msg.includes('always'))
+									return provideResponseForCorrectAnswer(ifid, res, dbTrace, qid, timeDiff, player);
+							}
 							else {
 								
 							}
