@@ -16,6 +16,8 @@ class Play extends Component {
       error: false,
       errorMessage: '',
       visibleModal: false,
+      updated3: false,
+      updated3Res: false
     }
   }
 
@@ -23,9 +25,30 @@ class Play extends Component {
     this.setState({visibleModal: true});
   }
 
+  updateLink= () =>{
+    this.setState({updated3: true});
+    this.props.history.push('/play/861793485');
+  }
+
+  updateAnswer = () =>{
+    this.setState({updated3Res: true});
+    console.log('Done');
+    this.props.history.push('/play');
+  }
+
   render() {
+    console.log(this.props);
     const { loading, redirect } = this.state;
     const {userGameInfo} = this.props;
+    let i=0, j=0;
+    if(userGameInfo.qid === 3 && !this.state.updated3 && !i){
+      i++;
+      this.updateLink();
+    }
+    if(userGameInfo.qid === 3 && !this.state.updated3Res && this.props.match.params.value==='6' && !j){
+      j++;
+      this.updateAnswer();
+    }
     return (
       <div>
         <Modal 
@@ -42,14 +65,19 @@ class Play extends Component {
             }
           </div>
         </Modal>        
-        <div className='white f1 b pt6'>
+        <div className='white tc flex flex-column items-center'>
           {(!userGameInfo.quesImage)?
-            <div>
-              Q{userGameInfo.qid}. {userGameInfo.question}
-            </div>
+            (userGameInfo.question.length >150)?
+              <div className='white f2 b pt6'>
+                Q{userGameInfo.qid}. {userGameInfo.question}
+              </div>
+              :
+              <div className='white f1 b pt6'>
+                Q{userGameInfo.qid}. {userGameInfo.question}
+              </div>
             :
             <div>
-              <div className='mw7 tc'>
+              <div className='mw6 tc bg-white-40'>
                 <img alt='Ques' src={userGameInfo.quesImageURL} />
                 <br />
 
@@ -61,7 +89,7 @@ class Play extends Component {
         <div className='tl'>
           <img className='hintImage mw4 pointer' src={HINT} onClick={this.getHint} />
         </div>
-        <JMPSBot {...this.props} />
+        <JMPSBot {...this.props} updated3Res={this.state.updated3Res} />
       </div>
     );
   }

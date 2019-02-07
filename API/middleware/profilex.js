@@ -35,11 +35,11 @@
 								qid: player[0].qid,
 								hint: player[0].hint,
 								question: `That's all folks!`,
-								quesImage: ques[0].img,
-								quesImageURL: ques[0].img_url,
-								hintMessage: ques[0].hint,
-								hintImage: ques[0].hint_img,
-								hintImageURL: ques[0].hint_img_url
+								quesImage: 0,
+								quesImageURL: null,
+								hintMessage: null,
+								hintImage: null,
+								hintImageURL: null
 							};
 						}
 						let userData = {

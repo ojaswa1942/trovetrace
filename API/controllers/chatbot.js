@@ -9,7 +9,11 @@ const checkRequestForBonus = (ques, message) => {
 }
 
 const provideResponseForCorrectHint = (req, res, dbTrace, message) => {
-
+	return res.status(200).json({
+		success: false,
+		successHint: true,
+		message: message
+	});
 }
 
 const provideResponseForCorrectAnswer = (ifid, res, dbTrace, qid ,timeDiff, player) => {
@@ -94,17 +98,24 @@ const handleChatbotResponse = (req,res,db,dbTrace,xss)=>{
 					.then(ques => {
 						if(ques.length){
 							msg=message.toLowerCase();
-							if(qid == 1){
+							if(qid === 1){
 								if(msg.includes('skip') || msg.includes('continue') || msg.includes('solve')){
 									return provideResponseForCorrectAnswer(ifid, res, dbTrace, qid, timeDiff, player);
 								}
 							}
-							else if(qid == 2){
-								if(msg.includes('nurturing'))
+							else if(qid === 2){
+								if(!msg.localeCompare("nurturing"))
 									return provideResponseForCorrectAnswer(ifid, res, dbTrace, qid, timeDiff, player);
 							}
-							else if(qid == 3){
-
+							else if(qid === 3){
+								if(!msg.localeCompare('smartverysmart'))
+									return provideResponseForCorrectAnswer(ifid, res, dbTrace, qid, timeDiff, player);
+							}
+							else if(qid === 4){
+								if(msg.includes('formula'))
+									return provideResponseForCorrectHint(ifid, res, dbTrace, "Y = X*(X^X)");
+								else if(!msg.localeCompare('5764801'))
+									return provideResponseForCorrectAnswer(ifid, res, dbTrace, qid, timeDiff, player);
 							}
 							else {
 								

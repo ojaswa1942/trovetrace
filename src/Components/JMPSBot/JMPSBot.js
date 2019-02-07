@@ -11,16 +11,10 @@ class JMPSBot extends Component {
     super(props);
     this.state={
       endGame: false,
+      reqEnd: false
     }
   }
   componentWillMount(){
-    // if(this.props.userGameInfo.qid === 1){
-    //     this.props.history.push('/play/awsfewhfv/value');
-      
-    // }
-    // if(this.props.match.params.value === '5'){
-    //   console.log('Yipee!');
-    // }
   }
   componentDidMount(){
   }
@@ -91,7 +85,10 @@ class JMPSBot extends Component {
       console.log(userData);
       if(error)
         throw(userData);
-      if(userData.success){
+      if(userData.successHint){
+        addResponseMessage(userData.message);
+      }
+      else if(userData.success){
         this.props.updateUserGameInfo(userData);
         addResponseMessage(this.successList[Math.floor(Math.random()*(this.successList.length))]);
         if(userData.end){
@@ -113,8 +110,11 @@ class JMPSBot extends Component {
       this.setState({error: true, errorMessage: err});
     })
   }
-
   render() {
+    if(this.props.updated3Res && !this.state.reqEnd){
+      this.setState({reqEnd: true});
+      this.requestMessageResponse('smartverysmart');
+    }
     let {badge} = this.props;
     return (
       <div>
