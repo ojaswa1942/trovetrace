@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  background-image: url('troveBack.jpg');
+  background-image: url('./assets/pictures/troveBack.jpg');
   background-size: cover;
 }
 

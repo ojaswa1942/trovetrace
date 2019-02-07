@@ -40,6 +40,7 @@ a{
   font-size: 2em;
   color: #fff;
   z-index: 2;
+  cursor: default;
   /*transform: translate3d(0, -50px, 0);*/
 }
 .headim {

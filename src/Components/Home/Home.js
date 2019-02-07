@@ -7,7 +7,7 @@ import '../../assets/css/fontawesome.min.css'
 import '../../assets/css/brands.min.css'
 import '../../assets/css/solid.min.css'
 import './Home.css';
-import TROVETRACE from '../../TROVTRACE.png'
+import TROVETRACE from '../../assets/pictures/TROVTRACE.png'
 
 class Home extends Component {
 
@@ -25,7 +25,7 @@ class Home extends Component {
           <a href='https://www.infotsav.in' target="_blank" rel="noopener noreferrer"><img src={headers} className="headim" alt="infotsav logo" /></a>
         </div>
         <div className='f1 b white b'>
-          <img src={TROVETRACE} class="title" />
+          <img alt='' src={TROVETRACE} class="title" />
         </div>
         <Login {...this.props} />
         <Footer />
