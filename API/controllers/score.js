@@ -1,7 +1,7 @@
 const handleHighScore = (req,res,db)=>{
  	db.select('*').from('players')
  	.orderBy('score', 'desc')
- 	.orderBy('time_taken', 'asc')
+ 	.orderBy('timestamp', 'asc')
  	.then(ranks => {
  		res.status(200).json(ranks);
 	})

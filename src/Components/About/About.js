@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import headers from "../../assets/logo/headers.png"
 import {Footer} from '../_Footer/Footer';
 import './About.css';
-import TROVETRACE from '../../TROVTRACE.png'
+import TROVETRACE from '../../assets/pictures/TROVTRACE.png'
 
 class About extends Component {
 

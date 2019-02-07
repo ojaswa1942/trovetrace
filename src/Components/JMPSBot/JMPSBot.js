@@ -38,7 +38,7 @@ class JMPSBot extends Component {
     else if(message.toLowerCase().includes('score'))
       setTimeout(() => {addResponseMessage(`Your score is ${this.props.userGameInfo.score}`);}, 1000);
     else if(message.toLowerCase().includes('help'))
-      setTimeout(() => {addResponseMessage(`You can always use the hint if you need help. Ofcourse, your score will be deducted!`);}, 1000);
+      setTimeout(() => {addResponseMessage(`You can always use the hint if you need help.`);}, 1000);
     else if(message.toLowerCase().includes('hey') || message.toLowerCase().includes('hello') | message.toLowerCase().includes('hi'))
       setTimeout(() => {addResponseMessage(`Just play the game already!`);}, 1000);
     else {

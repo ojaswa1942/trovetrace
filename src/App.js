@@ -21,7 +21,12 @@ const initialState = {
     qid: 0,
     score: 0,
     hint: 0,
-    question: ''
+    question: '',
+    quesImage: 0,
+    quesImageURL: '',
+    hintMessage: '',
+    hintImage: 0,
+    hintImageURL: ''
   },
   badge: 2
 }
@@ -40,7 +45,12 @@ class App extends Component {
         qid: 0,
         score: 0,
         hint: 0,
-        question: ''
+        question: '',
+        quesImage: 0,
+        quesImageURL: '',
+        hintMessage: '',
+        hintImage: 0,
+        hintImageURL: ''
       }
     }
   }
@@ -83,7 +93,7 @@ class App extends Component {
     this.setState({badge: value});
   }  
   updateUserGameInfo = (value) =>{
-    if(value.qid == 3){
+    if(value.qid === 3){
       toggleInputDisabled();
       addResponseMessage(`That's the end, my friend!  
         *Plays See You Again*`);
@@ -92,15 +102,27 @@ class App extends Component {
         qid: value.qid,
         score: value.score,
         hint: value.hint,
-        question: value.question
+        question: value.question,
+        quesImage: value.quesImage,
+        quesImageURL: value.quesImageURL,
+        hintMessage: value.hintMessage,
+        hintImage: value.hintImage,
+        hintImageURL: value.hintImageURL
       }
     });
   }
+
   updateUserInfo = (value) =>{
     this.setState({user: {
         id: value.ifid,
         name: value.name
       }
+    });
+  }
+  updateUserQues = (value) =>{
+    Object.assign(this.state.userGameInfo, {
+      question: value.question,
+      qid: value.qid
     });
   }
   updateUserScore = (value) =>{
@@ -129,6 +151,7 @@ class App extends Component {
     }
   }
   render() {
+    console.log(this.state);
     return (
       <div className="App min-vh-100">
         <Route exact path={['/', '/play/:rubbish?/:value?', '/about', '/rules', '/contact', '/score']} render={(props) =>
@@ -158,6 +181,7 @@ class App extends Component {
               updateUserHint={this.updateUserHint}
               badge={this.state.badge}
               updateBadge={this.updateBadge}
+              updateUserQues={this.updateUserQues}
             />}
           />
           <Route path="/about" exact component={About} />

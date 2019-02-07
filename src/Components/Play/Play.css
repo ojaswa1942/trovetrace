@@ -1,21 +1,11 @@
-#linkToHome404{
-	font-weight: 5;
-}
-.lostPics{
-	width: 300px;
-}
-.mavi1{
-	width: 310px;
-}
-
-.button{
+.buttonToStart{
 	border: 2px solid white;
 	border-radius: 50px;
 	height: 80px;
 	width: 300px;
-	position: absolute;
-	left: 42%;
-	margin-top: 300px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20%;
 	font-size: 2.5rem;
 	padding: 15px;
 	color: white;
@@ -29,4 +19,10 @@
 
 .timeDisplay{
 	color: white;
+}
+.hintImage{
+	position: absolute;
+	bottom: 100px;
+	left: 100px;
+	opacity: 0.95;
 }

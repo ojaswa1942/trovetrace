@@ -21,7 +21,12 @@
 								score: player[0].score,
 								qid: player[0].qid,
 								hint: player[0].hint,
-								question: ques[0].question
+								question: ques[0].question,
+								quesImage: ques[0].img,
+								quesImageURL: ques[0].img_url,
+								hintMessage: ques[0].hint,
+								hintImage: ques[0].hint_img,
+								hintImageURL: ques[0].hint_img_url
 							};
 						}
 						else {
@@ -29,7 +34,12 @@
 								score: player[0].score,
 								qid: player[0].qid,
 								hint: player[0].hint,
-								question: `That's all folks!`
+								question: `That's all folks!`,
+								quesImage: ques[0].img,
+								quesImageURL: ques[0].img_url,
+								hintMessage: ques[0].hint,
+								hintImage: ques[0].hint_img,
+								hintImageURL: ques[0].hint_img_url
 							};
 						}
 						let userData = {
@@ -44,7 +54,12 @@
  						score: 0,
  						qid: 0,
  						hint: 0,
- 						question: null
+ 						question: null,
+ 						quesImage: 0,
+						quesImageURL: null,
+						hintMessage: null,
+						hintImage: 0,
+						hintImageURL: null
  					};
 	 				let userData = {
 						user: userInfo,

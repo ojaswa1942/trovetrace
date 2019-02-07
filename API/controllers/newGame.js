@@ -12,7 +12,7 @@ const handleNewGame = (req,res,db,dbTrace)=>{
 					.then((ques) => {
 						let quesInfo = {
 							qid: ques[0].qid,
-							ques: ques[0].question
+							question: ques[0].question,
 						};
 						return res.status(200).json(quesInfo);
 					})

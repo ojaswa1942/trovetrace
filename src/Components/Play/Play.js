@@ -3,7 +3,7 @@ import {Link, Redirect} from 'react-router-dom';
 import headers from "../../assets/logo/headers.png"
 import {Footer} from '../_Footer/Footer';
 import {Loader} from '../_Loader/Loader';
-import JMPSBot from '../JMPSBot/JMPSBot';
+import Game from './Game';
 import './Play.css';
 
 class Play extends Component {
@@ -14,37 +14,50 @@ class Play extends Component {
       loading: true,
       redirect: false,
       error: false,
-      errorMessage: ''
+      errorMessage: '',
+      clicked: false
     }
     this.timeFlag=0;
   }
 
-  render(){
-    if(1){
-        return(
-          <h3>C</h3>
-        );
-    }
-    return(
-        <h1>Byeee</h1>
-    );
-  }
-
   componentWillMount(){
     if(!this.props.isLoggedIn){
-    fetch('/api/checkToken')
-    .then(response => {
-      if(response.status!==200)
-        throw(response);
-        this.setState({ loading: false });
-        this.props.updateLoginState(true);
-    })
-    .catch(() => {this.setState({ loading: false, redirect: true });});
+      fetch('/api/checkToken')
+      .then(response => {
+        if(response.status!==200)
+          throw(response);
+          this.setState({ loading: false });
+          this.props.updateLoginState(true);
+      })
+      .catch(() => {this.setState({ loading: false, redirect: true });});
     } else this.setState({loading: false});
+  }
+
+  startGame = () => {
+    if(!this.state.clicked){
+      this.setState({clicked: true});
+      let error = false;
+      fetch('/api/newGame')
+      .then(response => {
+        if(response.status!==200)
+          error = true;
+        return response.json();
+      })
+      .then((quesInfo) => {
+        if(error)
+          throw(quesInfo);
+        this.props.updateUserQues(quesInfo);
+        this.setState({errorMessage: ''});
+      })
+      .catch(err => {
+        this.setState({errorMessage: err});
+      })
+    }
   }
 
   render() {
     const { loading, redirect } = this.state;
+    const {userGameInfo} = this.props;
     const timeFlag=1;
     const date = new Date(0);
     return (
@@ -52,29 +65,32 @@ class Play extends Component {
         <div>
           <a href='https://www.infotsav.in' target="_blank" rel="noopener noreferrer"><img src={headers} className="headim" alt="infotsav logo" /></a>
         </div>
-        <div>
-          {
-            (!timeFlag)?
-            <div className="timeDisplay">
-              <h1>Contest Starts in: </h1>
-              <h1 className="timeDisplay"></h1>
-            </div>
-          :
-            <div>
-               <div className="button">
-                  Enter Contest
-               </div>
-            </div>
-          }
-
-        </div>
        {(!loading)?
           (redirect)?
             <Redirect to='/' />
           :
-            <div>
-              <JMPSBot {...this.props}  />
-            </div>
+          <div>
+            {
+              (!timeFlag)?
+              <div className="timeDisplay">
+                <h1>Contest Starts in: </h1>
+                <h1 className="timeDisplay"></h1>
+              </div>
+            :
+              <div>
+                {(!userGameInfo.qid)?
+                  <div>
+                   <div className="buttonToStart pointer" onClick={this.startGame} >
+                      Enter Contest
+                   </div>
+                   <div className='tc white'>{this.state.errorMessage}</div>
+                  </div>
+                 :
+                  <Game {...this.props} />
+                }
+              </div>
+            }
+          </div>
         :
           <Loader />
         }
