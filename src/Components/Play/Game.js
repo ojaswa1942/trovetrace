@@ -39,7 +39,6 @@ class Play extends Component {
   }
   updateAnswer = () =>{
     this.setState({updated3Res: true});
-    console.log('Done');
     this.props.history.push('/play');
   }
   startCountdown = () =>{
