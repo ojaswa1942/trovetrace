@@ -126,7 +126,7 @@ const handleChatbotResponse = (req,res,db,dbTrace,xss)=>{
 									return provideResponseForCorrectAnswer(ifid, res, dbTrace, qid, timeDiff, player);
 							}
 							else if(qid === 7){
-								if(msg.includes('answer'))
+								if(msg.includes('doctor strange'))
 									return provideResponseForCorrectAnswer(ifid, res, dbTrace, qid, timeDiff, player);
 							}
 							else if(qid === 8){
