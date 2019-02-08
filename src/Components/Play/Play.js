@@ -5,6 +5,7 @@ import {Footer} from '../_Footer/Footer';
 import {Loader} from '../_Loader/Loader';
 import Game from './Game';
 import './Play.css';
+import { addResponseMessage } from 'react-chat-widget';
 
 class Play extends Component {
 
@@ -48,7 +49,9 @@ class Play extends Component {
           throw(quesInfo);
         this.props.updateUserQues(quesInfo);
         this.setState({errorMessage: ''});
-      })
+        addResponseMessage("Hellooo.. Welcome to the game!");
+        addResponseMessage(`I'm JMPS! You can interact with me to answer and get hints.`);
+})
       .catch(err => {
         this.setState({errorMessage: err});
       })

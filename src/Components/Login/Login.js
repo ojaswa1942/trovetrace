@@ -3,6 +3,7 @@ import {Link, Redirect} from 'react-router-dom';
 import './signup.css'
 import {registerFunctions} from './LoginFunctions'
 import {Loader} from '../_Loader/Loader'
+import { addResponseMessage } from 'react-chat-widget';
 
 class Login extends Component {
 
@@ -70,6 +71,8 @@ class Login extends Component {
 			gotUserData: true, 
 			verification: user.user.confirm
 		})
+        addResponseMessage("Hellooo.. Welcome to the game!");
+        addResponseMessage(`I'm JMPS! You can interact with me to answer and get hints.`);
 	})
 	.catch(err => this.setState({errorRes: err}));
   }

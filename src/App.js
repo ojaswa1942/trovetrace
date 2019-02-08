@@ -151,7 +151,6 @@ class App extends Component {
     }
   }
   render() {
-    console.log(this.state);
     return (
       <div className="App min-vh-100">
         <Route exact path={['/', '/play/:value?', '/about', '/rules', '/contact', '/score']} render={(props) =>

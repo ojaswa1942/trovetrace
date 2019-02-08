@@ -35,7 +35,7 @@ class Nav extends Component {
           : 
           <NavLink exact activeStyle={{background: '#9EEBCF', color: 'black'}} className="f6 f5-l link bg-animate white hover-bg-light-green hover-black dib pa3 ph4-l " to="/">Home</NavLink>
           }
-          <NavLink exact activeStyle={{background: '#9EEBCF', color: 'black'}} className="f6 f5-l link bg-animate white hover-bg-light-green hover-black dib pa3 ph4-l" to="/about">About</NavLink>
+          <NavLink exact activeStyle={{background: '#9EEBCF', color: 'black'}} className="f6 f5-l link bg-animate white hover-bg-light-green hover-black dib pa3 ph4-l " to="/about">About</NavLink>
           <NavLink exact activeStyle={{background: '#9EEBCF', color: 'black'}} className="f6 f5-l link bg-animate white hover-bg-light-green hover-black dib pa3 ph4-l " to="/rules">Rules</NavLink>
           <NavLink exact activeStyle={{background: '#9EEBCF', color: 'black'}} className="f6 f5-l link bg-animate white hover-bg-light-green hover-black dib pa3 ph4-l " to="/score">Score</NavLink>
           <NavLink exact activeStyle={{background: '#9EEBCF', color: 'black'}} className="f6 f5-l link bg-animate white hover-bg-light-green hover-black dib pa3 ph4-l " to="/contact">Contact</NavLink>

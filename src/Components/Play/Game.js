@@ -4,7 +4,6 @@ import {Loader} from '../_Loader/Loader';
 import JMPSBot from '../JMPSBot/JMPSBot';
 import HINT from '../../assets/pictures/hint.png'
 import Modal from 'react-awesome-modal';
-import Countdown from 'react-countdown-now';
 
 let i=0, j=0;
 
@@ -21,14 +20,15 @@ class Play extends Component {
       updated3: false,
       updated3Res: false,
       seconds: 10,
-      countdownStatus: false
+      countdownStatus: false,
+      funct: false
     }
   }
   componentDidMount(){
     // if(this.props.userGameInfo.qid === 3)
     //   this.startCountdown();
   }
-  componentDidUnmount(){
+  componentWillUnmount(){
     this.stopCountdown();
   }
   getHint = () =>{
@@ -52,16 +52,24 @@ class Play extends Component {
         else if(this.state.seconds === 0)
           this.setState({seconds: 10});
         else this.setState(prevState => ({seconds: prevState.seconds-1}));
-      }, 1000);
+      }, 700);
     }
   }
   stopCountdown = () => {
     clearInterval(this.interval);
     this.setState({countdownStatus: false});
   }
+  startFuncLog = () => {
+    window.question = (me) => {
+      if(me===('JMPSisTheBest')){
+        console.log('A.B.V. - I.I.I.T. GWALIOR');
+      }
+      else console.log('JMPSisTheBest');
+    }
+  }
 
   render() {
-    const { loading, redirect } = this.state;
+    // const { loading, redirect } = this.state;
     const {userGameInfo} = this.props;
     if(userGameInfo.qid === 3 && !this.state.updated3 && !i){
       i++;
@@ -70,6 +78,10 @@ class Play extends Component {
     if(userGameInfo.qid === 3 && !this.state.countdownStatus){
       this.setState({countdownStatus: true});
       this.startCountdown();
+    }
+    if(userGameInfo.qid === 8 && !this.state.funct){
+      this.setState({funct: true});
+      this.startFuncLog();
     }
     if(userGameInfo.qid === 3 && !this.state.updated3Res && this.props.match.params.value==='6' && !j){
       j++;
@@ -104,11 +116,11 @@ class Play extends Component {
               </div>
             :
             <div>
-              <div className='mw6 tc bg-white-40'>
+              <div className='mw6 tc'>
                 <img alt='Ques' src={userGameInfo.quesImageURL} />
               </div>
               {(userGameInfo.qid === 3)?
-                <div className='f1'>
+                <div className='f1 b'>
                   {this.state.seconds}
                 </div>
               : null
@@ -117,7 +129,7 @@ class Play extends Component {
           }
         </div>
         <div className='tl'>
-          <img className='hintImage mw4 pointer' src={HINT} onClick={this.getHint} />
+          <img className='hintImage mw4 pointer' src={HINT} alt='getHint' onClick={this.getHint} />
         </div>
         <JMPSBot {...this.props} updated3Res={this.state.updated3Res} />
       </div>

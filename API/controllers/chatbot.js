@@ -121,9 +121,23 @@ const handleChatbotResponse = (req,res,db,dbTrace,xss)=>{
 								if(msg.includes('always'))
 									return provideResponseForCorrectAnswer(ifid, res, dbTrace, qid, timeDiff, player);
 							}
-							else {
-								
+							else if(qid === 6){
+								if(msg.includes('answer'))
+									return provideResponseForCorrectAnswer(ifid, res, dbTrace, qid, timeDiff, player);
 							}
+							else if(qid === 7){
+								if(msg.includes('answer'))
+									return provideResponseForCorrectAnswer(ifid, res, dbTrace, qid, timeDiff, player);
+							}
+							else if(qid === 8){
+								if(!msg.localeCompare("a.b.v. - i.i.i.t. gwalior"))
+									return provideResponseForCorrectAnswer(ifid, res, dbTrace, qid, timeDiff, player);
+							}
+							else if(qid === 9){
+								if(msg.includes('answer'))
+									return provideResponseForCorrectAnswer(ifid, res, dbTrace, qid, timeDiff, player);
+							}
+							
 							return res.status(200).json({
 								success: false,
 								successHint: false,
