@@ -26,7 +26,8 @@ const initialState = {
     quesImageURL: '',
     hintMessage: '',
     hintImage: 0,
-    hintImageURL: ''
+    hintImageURL: '',
+    pleaseWait: true
   },
   badge: 2
 }
@@ -50,8 +51,9 @@ class App extends Component {
         quesImageURL: '',
         hintMessage: '',
         hintImage: 0,
-        hintImageURL: ''
-      }
+        hintImageURL: '',
+      },
+      pleaseWait: true
     }
   }
 
@@ -71,16 +73,18 @@ class App extends Component {
       if(err)
         throw res;
       this.sendWelcomeMessage();
+      this.setState({pleaseWait: false})
       this.checkForVerification(res.user.confirm);
       this.updateUserGameInfo(res.userGame);
       this.updateUserInfo(res.user);
       this.updateLoginState(true);
     })
-    .catch(console.log);
+    .catch((err)=>{
+      console.log(err); 
+      this.setState({pleaseWait: false})
+    });
   }
   sendWelcomeMessage = () => {
-    addResponseMessage("Hellooo.. Welcome to the game!");
-    addResponseMessage(`I'm JMPS! You can interact with me to answer and get hints.`);
   }
   checkForVerification = (value) => {
     if(!value)
@@ -122,8 +126,10 @@ class App extends Component {
   updateUserQues = (value) =>{
     Object.assign(this.state.userGameInfo, {
       question: value.question,
-      qid: value.qid
+      qid: value.qid,
+      hintMessage: value.hintMessage
     });
+    this.setState({pleaseWait: false});
   }
   updateUserScore = (value) =>{
     Object.assign(this.state.userGameInfo, {
@@ -181,6 +187,7 @@ class App extends Component {
               badge={this.state.badge}
               updateBadge={this.updateBadge}
               updateUserQues={this.updateUserQues}
+              pleaseWait={this.state.pleaseWait}
             />}
           />
           <Route path="/about" exact component={About} />

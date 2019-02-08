@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
 import Login from '../Login/Login'
 import headers from "../../assets/logo/headers.png"
 import {Footer} from '../_Footer/Footer';

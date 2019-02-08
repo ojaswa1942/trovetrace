@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
 import headers from "../../assets/logo/headers.png"
 import {Footer} from '../_Footer/Footer';
 import TeamCard from './TeamCard';

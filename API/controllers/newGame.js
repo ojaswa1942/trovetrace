@@ -13,6 +13,7 @@ const handleNewGame = (req,res,db,dbTrace)=>{
 						let quesInfo = {
 							qid: ques[0].qid,
 							question: ques[0].question,
+							hintMessage: ques[0].hint,
 						};
 						return res.status(200).json(quesInfo);
 					})

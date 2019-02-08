@@ -20,6 +20,10 @@ class Play extends Component {
     }
     this.timeFlag=0;
   }
+  componentDidMount(){
+    addResponseMessage("Hellooo.. Welcome to the game!");
+    addResponseMessage(`I'm JMPS! You can interact with me to answer and get hints.`);
+  }
 
   componentWillMount(){
     if(!this.props.isLoggedIn){
@@ -49,9 +53,7 @@ class Play extends Component {
           throw(quesInfo);
         this.props.updateUserQues(quesInfo);
         this.setState({errorMessage: ''});
-        addResponseMessage("Hellooo.. Welcome to the game!");
-        addResponseMessage(`I'm JMPS! You can interact with me to answer and get hints.`);
-})
+      })
       .catch(err => {
         this.setState({errorMessage: err});
       })
@@ -59,10 +61,13 @@ class Play extends Component {
   }
 
   render() {
+    if(this.props.pleaseWait)
+      return(<Loader />);
+    
     const { loading, redirect } = this.state;
     const {userGameInfo} = this.props;
     const timeFlag=1;
-    const date = new Date(0);
+    // const date = new Date(0);
     return (
       <div className=''>
         <div>
@@ -77,7 +82,6 @@ class Play extends Component {
               (!timeFlag)?
               <div className="timeDisplay">
                 <h1>Contest Starts in: </h1>
-                <h1 className="timeDisplay"></h1>
               </div>
             :
               <div>

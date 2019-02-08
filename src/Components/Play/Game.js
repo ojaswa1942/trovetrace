@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import {Link, Redirect} from 'react-router-dom';
-import {Loader} from '../_Loader/Loader';
 import JMPSBot from '../JMPSBot/JMPSBot';
 import HINT from '../../assets/pictures/hint.png'
 import Modal from 'react-awesome-modal';

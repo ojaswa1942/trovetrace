@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
 import { Widget, addResponseMessage, addLinkSnippet, toggleInputDisabled } from 'react-chat-widget';
 import arcreactor from '../../assets/pictures/arcreactor.png'
 import 'react-chat-widget/lib/styles.css';
@@ -115,7 +114,7 @@ class JMPSBot extends Component {
       this.setState({reqEnd: true});
       this.requestMessageResponse('smartverysmart');
     }
-    let {badge} = this.props;
+    // let {badge} = this.props;
     return (
       <div>
         <Widget 
