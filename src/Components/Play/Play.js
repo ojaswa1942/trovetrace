@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link, Redirect} from 'react-router-dom';
+import {Redirect} from 'react-router-dom';
 import headers from "../../assets/logo/headers.png"
 import {Footer} from '../_Footer/Footer';
 import {Loader} from '../_Loader/Loader';
