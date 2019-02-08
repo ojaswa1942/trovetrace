@@ -51,13 +51,13 @@ app.use(cookieParser());
 
 app.get('/api', (req,res)=>{ res.send('it is working')});
 app.post('/api/signin', (req,res)=> {signin.handleSignin(req, res, db, dbTrace, bcrypt, xss)});
-app.post('/api/chatbot', withAuth, timeCheck, (req,res)=>{chatbot.handleChatbotResponse(req, res, db, dbTrace, xss)});
+app.post('/api/chatbot', withAuth, (req,res)=>{chatbot.handleChatbotResponse(req, res, db, dbTrace, xss)});
 app.get('/api/score', (req,res)=>{score.handleHighScore(req, res, dbTrace)});
 app.post('/api/lost', (req,res)=>{lost.handleLostUpdate(req, res, db)});
 app.get('/api/hint', withAuth, (req,res)=>{hint.handleHint(req, res, db, dbTrace)});
-app.get('/api/newGame', withAuth, timeCheck, (req,res)=>{newGame.handleNewGame(req, res, db, dbTrace)});
+app.get('/api/newGame', withAuth, (req,res)=>{newGame.handleNewGame(req, res, db, dbTrace)});
 app.get('/api/logout', (req, res) => {res.clearCookie('token'); res.status(301).redirect('/login');});
-app.get('/api/profilex', withAuth, timeCheck, (req, res) => {profilex.handleProfile(req, res, db, dbTrace)});
+app.get('/api/profilex', withAuth, (req, res) => {profilex.handleProfile(req, res, db, dbTrace)});
 app.get('/api/checkAdmin', withAdmin, (req, res) => {
   res.sendStatus(200);
 });
