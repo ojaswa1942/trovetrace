@@ -63,7 +63,7 @@ class Play extends Component {
   render() {
     if(this.props.pleaseWait)
       return(<Loader />);
-    
+
     const { loading, redirect } = this.state;
     const {userGameInfo} = this.props;
     const timeFlag=1;
@@ -90,7 +90,7 @@ class Play extends Component {
                    <div className="buttonToStart pointer" onClick={this.startGame} >
                       Enter Contest
                    </div>
-                   <div className='tc white'>{this.state.errorMessage}</div>
+                   <div className='tc white f3'>{this.state.errorMessage}</div>
                   </div>
                  :
                   <Game {...this.props} />

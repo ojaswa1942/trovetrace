@@ -104,8 +104,16 @@ class JMPSBot extends Component {
     })
     .catch(err => {
       console.log(err);
-      addResponseMessage(`Mr. ${this.props.userInfo.name}, I don't feel so good! `)
-      addResponseMessage(`I am experiencing technical problems, please try again.`)
+      var now = new Date();
+      var startTime = new Date('09/02/2019 01:00:00 AM');
+      var endTime = new Date('09/02/2019 03:00:00 AM');
+      if(now<startTime || now>endTime){
+        addResponseMessage(`TIME UP!!`)
+      }
+      else{
+        addResponseMessage(`Mr. ${this.props.userInfo.name}, I don't feel so good! `)
+        addResponseMessage(`I am experiencing technical problems, please try again.`)
+      }
       this.setState({error: true, errorMessage: err});
     })
   }
