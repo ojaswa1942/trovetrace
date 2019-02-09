@@ -136,11 +136,10 @@ const handleChatbotResponse = (req,res,db,dbTrace,xss)=>{
 							else if(qid === 9){
 								if(msg.includes('word'))
 									return provideResponseForCorrectHint(ifid, res, dbTrace, "AKASH, MONKEY, QUICK");
-								if(msg.includes('brrgrbg') || msg.includes('blue red red green red blue green') )
+								else if(msg.includes('brrgrbg') || msg.includes('blue red red green red blue green') )
 									return provideResponseForCorrectHint(ifid, res, dbTrace, "3");
-								if(!msg.localeCompare("pokeball kite mjolnir"))
-									return provideResponseForCorrectHint(ifid, res, dbTrace, "AKASH, MONKEY, QUICK");
-								return provideResponseForCorrectAnswer(ifid, res, dbTrace, qid, timeDiff, player);
+								else if(!msg.localeCompare("pokeball kite mjolnir"))
+									return provideResponseForCorrectAnswer(ifid, res, dbTrace, qid, timeDiff, player);
 							}
 							
 							return res.status(200).json({

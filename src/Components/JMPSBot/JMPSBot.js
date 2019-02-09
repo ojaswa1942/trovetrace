@@ -81,7 +81,6 @@ class JMPSBot extends Component {
       return response.json();
     })
     .then((userData) => {
-      console.log(userData);
       if(error)
         throw(userData);
       if(userData.successHint){

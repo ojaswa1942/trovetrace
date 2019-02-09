@@ -40,8 +40,8 @@ class Rules extends Component {
           <ul>
             <li>The participant who clears the maximum no of levels earliest would be declared as the winner.</li><br />
             <li>In case of more than one participant solving the equal number of questions, the one who solves earlier would be declared as the winner. </li><br />
-            <li>The quiz will be over in 2 hours.</li><br />
-            <li>The contest will commence at 1AM and end at 3AM on 09/02/19</li><br />
+            <li>The quiz will be over when all 9 questions are answered</li><br />
+            <li>The contest will commence at 1AM and will continue till the Prize Distribution Cermony</li><br />
             <li>Goodies are for 1st place only</li><br />
             <li>Anyone caught cheating or trying to post answers on any forum would be disqualified.</li><br />
             <li>The discretion & judgement of the organizers is final.</li><br />
