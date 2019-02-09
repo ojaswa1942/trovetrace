@@ -1,12 +1,12 @@
-const checkRequestForAnswer = (ques, message) => {
-	if(message.toLowerCase().includes((ques.answer).toLowerCase()))
-		return true;
-	else return false;
-}
+// const checkRequestForAnswer = (ques, message) => {
+// 	if(message.toLowerCase().includes((ques.answer).toLowerCase()))
+// 		return true;
+// 	else return false;
+// }
 
-const checkRequestForBonus = (ques, message) => {
+// const checkRequestForBonus = (ques, message) => {
 
-}
+// }
 
 const provideResponseForCorrectHint = (req, res, dbTrace, message) => {
 	return res.status(200).json({
